@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/NKN1396/discord.js-modasist#readme",
   "dependencies": {
-    "discord.js": "^11.5.1",
-    "discord.js-commando": "^0.10.0"
+    "discord.js": "github:discordjs/discord.js",
+    "discord.js-commando": "github:discordjs/discord.js-commando",
+    "discord.js-handles": "github:NKN1396/discord.js-handles",
+    "luxon": "^1.16.0"
   }
 }
