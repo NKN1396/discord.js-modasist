@@ -1,0 +1,65 @@
+Message spam (too many messages per timeframe)
+Mention spam (too many mentions per timeframe)
+Repeated (duplicate) messages
+Unsolicited Discord invites
+Capslock spam (too much caps in a message)
+Attachment spam (too many attachments per timeframe)
+Newline spam (too many newlines per timeframe/message)
+Emoji spam (too many emojis per message)
+Link spam (too many links per timeframe)
+
+//track deletes
+//track edits
+track profanity (token -> can appear inbetween [e.g. nigger in sandnigger] || word -> has to be standalone [e.g. camp as in campaign]) 
+
+Offensive username
+Offensive displayName / nickname
+
+
+
+ROWBOAT:
+  spam:
+    levels:
+      0:
+        punishment: TEMPMUTE
+        punishment_duration: 120
+        clean: true
+        clean_count: 50
+        clean_duration: 500
+        max_messages:
+          count: 10
+          interval: 7
+        max_mentions:
+          count: 8
+          interval: 30
+        max_links:
+          count: 10
+          interval: 60
+        max_attachments:
+          count: 10
+          interval: 60
+        max_emojis:
+          count: 100
+          interval: 120
+        max_newlines:
+          count: 60
+          interval: 120
+        max_duplicates:
+          count: 5
+          interval: 30
+  censor:
+    levels:
+      0:
+        filter_zalgo: true
+        filter_invites: true
+        invites_guild_whitelist: [205769246008016897, 272885620769161216]
+        invites_whitelist: ['discord-developers', 'discord-testers', 'discord-api', 'events', 'discord-linux', 'gamenight', 'discord-feedback']
+        invites_blacklist: []
+        filter_domains: true
+        domains_whitelist: []
+        domains_blacklist: ['website.net']
+        blocked_tokens: ['token1', 'token2']
+        blocked_words: ['word1', 'word2', 'word3']
+     channels:
+      290923757399310337:
+        blocked_words: ['word4']
