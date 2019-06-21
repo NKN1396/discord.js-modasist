@@ -1,6 +1,5 @@
-//const Discord = require("discord.js")
-
 module.exports = {
-	Alert: require("./alert/Alert")
-	//,Automod: require("./automod/Automod")
+	BehaviorTracker: require("./listen/index"),
+	PunishmentHandler: require("./handles/index"),
+	GuildPunishments: require("./punishments/index")
 }
