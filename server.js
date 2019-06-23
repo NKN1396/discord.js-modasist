@@ -19,7 +19,13 @@ bot.on("ready", () => {
 	console.log(`Logged in as ${bot.user.tag}`)
 })
 
-alerts.on("userMessageSpam", (test) => {
-	console.log("userMessageSpam")
-	console.log(test)
+var debugChannel
+
+bot.on("ready", ()=> {
+	debugChannel = bot.guilds.get("299298454457548801").channels.get("303350853568299010")
+})
+
+alerts.on("memberMessageSpam", member => {
+	console.log("memberMessageSpam"),
+	debugChannel.send(`${member}`)
 })
