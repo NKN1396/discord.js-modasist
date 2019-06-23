@@ -1,16 +1,11 @@
 module.exports = function(tracker){
 	tracker.client.on("message", message => {
-		if(!tracker.users.has(message.author.id)) tracker.users.set(message.author.id, {})
-		console.log(`tracker.users.get(message.author.id).messagesIn30s = ${tracker.users.get(message.author.id).messagesIn30s}`)
-		var messagesIn30s = tracker.users.get(message.author.id).messagesIn30s
-		messagesIn30s++
-		console.log(`messagesIn30s = ${messagesIn30s}`)
-		console.log(`tracker.users.get(message.author.id).messagesIn30s = ${tracker.users.get(message.author.id).messagesIn30s}`)
-
+		const user = tracker.users.fetch(message.author.id)
+		user.messagesIn30s++
 		setTimeout(() => {
-			messagesIn30s--
-		}, 30000)
-		if(messagesIn30s > 8) {
+			user.messagesIn30s--
+		}, 30 * 1000)
+		if(user.messagesIn30s >= 6) {
 			tracker.emit("userMessageSpam", message.author)
 		}
 	})
