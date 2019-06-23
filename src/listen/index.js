@@ -1,14 +1,19 @@
-console.log("modasist?")
-
 const EventEmitter = require("events")
-const UserStore = require("./../consts/ModasistUserStore")
-const GuildStore = require("../consts/ModasistGuildStore")
+const UserStore = require("./consts/ModasistUserStore")
+const GuildStore = require("./consts/ModasistGuildStore")
 
 class BevahiorTracker extends EventEmitter {
 	constructor (options = {}) {
 		//Apply options
 		super()
 		if(options.client) this.client = options.client
+		else console.error("Modasist: No client provided!")
+
+		if(options.ruleOverrides){
+			ruleOverrides.array.forEach(element => {
+				
+			})
+		}
 
 		//Attributes
 		this.guilds = new GuildStore()
@@ -25,5 +30,3 @@ class BevahiorTracker extends EventEmitter {
 }
 
 module.exports = BevahiorTracker
-
-console.log("MODASIST!")
