@@ -1,4 +1,4 @@
-const Spamtracker = require("./Spamtracker")
+const SpamChecker = require("./SpamChecker")
 
 /**
  * Stores Discord users.
@@ -7,7 +7,7 @@ module.exports = class ModasistUserStore extends Map {
 	constructor(iterable) {
 		super(iterable)
 
-		this.trackers = []
+		this.checkers = []
 	}
 
 	fetch(key) {
@@ -18,8 +18,8 @@ module.exports = class ModasistUserStore extends Map {
 	}
 
 	addSpamtracker() {
-		this.trackers.push(
-			new Spamtracker()
+		this.checkers.push(
+			new SpamChecker()
 		)
 	}
 

@@ -6,16 +6,15 @@ module.exports = function(tracker) {
 			return
 		}
 		const member = tracker.guilds.fetch(message.guild.id).members.fetch(message.member.id)
-		//TODO: trackers => listeners
-		member.trackers.filter(relevantTracker => {
-			return (relevantTracker.eventName === eventName)
+		member.checkers.filter(checker => {
+			return (checker.eventName === eventName)
 		})
-			.forEach(relevantTracker => {
-
+			.forEach(checker => {
+				let alert = checker.check(1, message.created)
+				if (alert) {
+					tracker.emit(eventName, message.member)
+				}
 			})
-		const spamtracker = .fetch(eventName)
-		spamtracker.on("spam", ()=>{
-			tracker.emit(eventName, message.member)
-		})
+
 	})
 }
