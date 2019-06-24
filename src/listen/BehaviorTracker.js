@@ -10,7 +10,7 @@ class BevahiorTracker extends EventEmitter {
 		if (options.client) {
 			this.client = options.client
 		} else {
-			console.error("Modasist: No client provided!")
+			new Error("Modasist: No client provided!")
 		}
 		
 		/*
