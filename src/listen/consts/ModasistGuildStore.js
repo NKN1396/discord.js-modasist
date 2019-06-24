@@ -1,4 +1,4 @@
-const MemberStore = require("./ModasistMemberStore")
+const UserStore = require("./ModasistUserStore")
 
 /**
  * Represents a single Discord guild.
@@ -11,7 +11,7 @@ module.exports = class ModasistGuildStore extends Map {
 	fetch(key){
 		if(!super.has(key)){
 			let value = {
-				members: new MemberStore()
+				members: new UserStore()
 			}
 			super.set(key, value)
 		}
