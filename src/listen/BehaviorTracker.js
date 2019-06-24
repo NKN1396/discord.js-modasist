@@ -6,14 +6,21 @@ class BevahiorTracker extends EventEmitter {
 	constructor (options = {}) {
 		//Apply options
 		super()
-		if(options.client) this.client = options.client
-		else console.error("Modasist: No client provided!")
 
+		if (options.client) {
+			this.client = options.client
+		} else {
+			console.error("Modasist: No client provided!")
+		}
+		
+		/*
+		//TODO: rule overrides
 		if(options.ruleOverrides){
 			ruleOverrides.array.forEach(element => {
 				
 			})
 		}
+		*/
 
 		//Attributes
 		this.guilds = new GuildStore()
