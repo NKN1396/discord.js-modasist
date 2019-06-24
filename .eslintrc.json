@@ -48,6 +48,17 @@
 				"requireReturn": false,
 				"requireReturnDescription": false
 			}
-		]
+		],
+		"brace-style": [
+			2,
+			"1tbs",
+			{
+				"allowSingleLine": false
+			}
+		],
+		"curly": "error",
+		"space-before-blocks": "error",
+		"keyword-spacing": "error"
 	}
+
 }
