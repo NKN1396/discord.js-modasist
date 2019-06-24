@@ -9,7 +9,7 @@ module.exports = tracker => {
 		setTimeout(function() {
 			user.messagesIn30s--
 		}, 400 * 1000)
-		if(user.messagesIn30s >= 6) {
+		if (user.messagesIn30s >= 6) {
 			tracker.emit("memberMessageSpam", message.member)
 		}
 	})
