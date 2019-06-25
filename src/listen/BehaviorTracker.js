@@ -27,8 +27,8 @@ class BevahiorTracker extends EventEmitter {
 		this.users = new UserStore()
 
 		//Events
-		require("./events/userMessageSpam")(this)
-		require("./events/memberMentionUserSpam")(this)
+		//require("./events/userMessageSpam")(this)
+		//require("./events/memberMentionUserSpam")(this)
 		require("./events/memberMessageSpam")(this)
 
 	}

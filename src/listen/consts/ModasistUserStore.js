@@ -1,25 +1,17 @@
-const SpamChecker = require("./SpamChecker")
+const DataStore = require("./ModasistDataStore")
 
 /**
  * Stores Discord users.
  */
-module.exports = class ModasistUserStore extends Map {
+module.exports = class ModasistUserStore extends DataStore {
 	constructor(iterable) {
 		super(iterable)
-
-		this.checkers = []
 	}
 
 	fetch(key) {
-		if (!super.has(key)) {
-			super.set(key, {})
-		}
-		return super.get(key)
-	}
-
-	addSpamtracker() {
-		this.checkers.push(
-			new SpamChecker()
+		return super.fetch(
+			key,
+			new DataStore()
 		)
 	}
 

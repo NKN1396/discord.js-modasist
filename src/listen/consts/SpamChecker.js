@@ -1,9 +1,8 @@
 class SpamChecker extends Object {
-	constructor(threshold, timeframe, eventName, triggerOnce = true) {
+	constructor(threshold, timeframe, triggerOnce = true) {
 		super()
 		this.threshold = threshold //2000
 		this.timeframe = timeframe //400
-		this.eventName = eventName //memberMessageSpam
 		this.triggerOnce = triggerOnce
 		this.points = 0
 		this.decayRate = threshold / timeframe

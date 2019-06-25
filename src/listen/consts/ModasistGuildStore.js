@@ -1,20 +1,24 @@
+const DataStore = require("./ModasistDataStore")
 const UserStore = require("./ModasistUserStore")
 
 /**
  * Represents a single Discord guild.
  */
-module.exports = class ModasistGuildStore extends Map {
+module.exports = class ModasistGuildStore extends DataStore {
 	constructor(iterable) {
 		super(iterable)
 	}
 
 	fetch(key) {
-		if (!super.has(key)) {
-			let value = {
-				members: new UserStore()
+		var buffer = super.fetch(key)
+		buffer.members = new UserStore()
+		buffer.checkers = new DataStore()
+		return super.fetch(
+			key,
+			{
+				members: new UserStore(),
+				checkers: new DataStore()
 			}
-			super.set(key, value)
-		}
-		return super.get(key)
+		)
 	}
 }

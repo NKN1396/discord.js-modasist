@@ -1,5 +1,5 @@
 module.exports = {
-	BehaviorTracker: require("./listen/index"),
+	BehaviorTracker: require("./listen/BehaviorTracker"),
 	PunishmentHandler: require("./handles/index"),
 	GuildPunishments: require("./punishments/index")
 }
