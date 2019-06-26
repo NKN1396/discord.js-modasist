@@ -2,23 +2,24 @@ const DataStore = require("./ModasistDataStore")
 const UserStore = require("./ModasistUserStore")
 
 /**
- * Represents a single Discord guild.
+ * Represents Discord guilds.
  */
 module.exports = class ModasistGuildStore extends DataStore {
 	constructor(iterable) {
 		super(iterable)
 	}
 
+	/**
+	 * Fetches a single guild from a list of guilds.
+	 * @param {String} key ID of the guild.
+	 * @returns {*} The guild.
+	 */
 	fetch(key) {
-		var buffer = super.fetch(key)
-		buffer.members = new UserStore()
-		buffer.checkers = new DataStore()
-		return super.fetch(
-			key,
-			{
-				members: new UserStore(),
-				checkers: new DataStore()
-			}
-		)
+		let value = {
+			members: new UserStore(),
+			spamcheckers: new DataStore()
+		}
+		return super.fetch(key, value)
 	}
+
 }

@@ -1,7 +1,5 @@
-const Spamchecker = require("./../consts/Spamchecker")
-
 const eventName = "memberMessageSpam"
-let rules = [
+let defaultRules = [
 	{
 		threshold: 4, //6
 		timeframe: 30 * 1000
@@ -17,26 +15,15 @@ let rules = [
 	}
 ]
 
-module.exports = function (tracker, ruleOverrides = rules) {
-	tracker.client.on("message", message => {
-		let guild = message.guild
-		let member = message.member
-		if (!guild) {
-			return
-		}
-		let checkers = tracker.guilds.fetch(guild.id).members.fetch(member.id).checkers.fetch(eventName)
-		if (checkers.size === 0) {
-			//checkers.add
-			ruleOverrides.forEach(ruleOverride => {
-				checkers.push(new Spamchecker(ruleOverride.threshold, ruleOverride.timeframe))
-			})
-			checkers = ruleOverrides
-		}
-		checkers.forEach(checker => {
-			if (checker.check(1, message.createdAtTimestamp)) {
-				tracker.emit(eventName, member)
-			}
-		})
-
-	})
+module.exports = async (tracker, message, rules = defaultRules) => {
+	let guild = message.guild
+	let member = message.member
+	if (!guild) {
+		return
+	}
+	let spamcheckers = tracker.guilds.fetch(guild.id).members.fetch(member.id).spamcheckers.fetch(eventName, [])
+	spamcheckers.init(rules)
+	if (spamcheckers.check(1, message.createdAtTimestamp)) {
+		tracker.emit(eventName, member)
+	}
 }

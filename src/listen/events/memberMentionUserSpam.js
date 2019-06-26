@@ -1,16 +1,31 @@
-module.exports = function(tracker) {
-	tracker.client.on("message", message => {
-		if (!message.guild) {
-			return
-		}
-		const member = tracker.guilds.fetch(message.guild.id).members.fetch(message.member.id)
-		const mentionsInMessage = message.mentions.users.size
-		member.pingsIn1m += mentionsInMessage
-		setTimeout(() => {
-			member.pingsIn1m -= mentionsInMessage
-		}, 60 * 1000)
-		if (member.pingsIn1m >= 6) {
-			tracker.emit("memberMentionUserSpam", message.member)
-		}
-	})
+const eventName = "memberMentionUserSpam"
+let defaultRules = [
+	{
+		threshold: 4, //6
+		timeframe: 30 * 1000
+	}, {
+		threshold: 15, //30
+		timeframe: 3600 * 1000
+	}, {
+		threshold: 25, //40
+		timeframe: 24 * 3600 * 1000
+	}
+]
+
+module.exports = async (tracker, message, rules = defaultRules) => {
+	let guild = message.guild
+	let member = message.member
+	if (!guild) {
+		return
+	}
+	let spamcheckers = tracker.guilds.fetch(guild.id).members.fetch(member.id).spamcheckers.fetch(eventName, [])
+	spamcheckers.init(rules)
+	if (
+		spamcheckers.check(
+			message.mentions.users.size,
+			message.createdAtTimestamp
+		)
+	) {
+		tracker.emit(eventName, member)
+	}
 }

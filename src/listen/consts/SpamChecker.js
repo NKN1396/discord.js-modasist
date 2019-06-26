@@ -1,3 +1,6 @@
+/**
+ * Checks if a user has been spamming a specific event.
+ */
 class SpamChecker extends Object {
 	constructor(threshold, timeframe, triggerOnce = true) {
 		super()

@@ -1,22 +1,21 @@
-const Spamtracker = require("./../consts/Spamtracker")
+const SpamcheckerCollection = require("./SpamcheckerCollection")
 
-class SpamtrackerStore extends Map {
+/**
+ * A map extended with a fetch method.
+ */
+module.exports = class ModasistDataStore extends Map {
 	constructor(iterable) {
 		super(iterable)
-		
 	}
+
 	fetch(key) {
 		if (!super.has(key)) {
-			let value = new Spamtracker()
-			super.set(key, [])
+			super.set(
+				key,
+				new SpamcheckerCollection()
+			)
 		}
-		if (super.has(key)) {
-			super.set()
-		}
-
 		return super.get(key)
 	}
 
 }
-
-module.exports = SpamtrackerStore
